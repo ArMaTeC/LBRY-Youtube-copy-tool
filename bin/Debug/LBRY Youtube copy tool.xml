@@ -1,0 +1,81 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+LBRY Youtube copy tool
+</name>
+</assembly>
+<members>
+<member name="T:LBRY_Youtube_copy_tool.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:LBRY_Youtube_copy_tool.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:LBRY_Youtube_copy_tool.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:LBRY_Youtube_copy_tool.OpenFolderDialog.InitialFolder">
+ <summary>
+ Gets/sets folder in which dialog will be open.
+ </summary>
+</member>
+<member name="P:LBRY_Youtube_copy_tool.OpenFolderDialog.DefaultFolder">
+ <summary>
+ Gets/sets directory in which dialog will be open if there is no recent directory available.
+ </summary>
+</member>
+<member name="P:LBRY_Youtube_copy_tool.OpenFolderDialog.Folder">
+ <summary>
+ Gets selected folder.
+ </summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.ValueChanged">
+ <summary>Occurs when the value of the progress bar is changed</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.PercentageDecimalsChanged">
+ <summary>Occurs when the amount of decimals to be displayed in the percentage is changed</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.PercentageVisibleChanged">
+ <summary>Occurs when the visibility of the percentage text is changed</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.AutoUpdatePercentageChanged">
+ <summary>Occurs when the automatic updating of the percentage is turned on or off</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.OverlayTextColorChanged">
+ <summary>Occurs when the OverlayTextColor property is changed</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.TextColorChanged">
+ <summary>Occurs when the TextColor property is changed</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.PercentageAlignChanged">
+ <summary>Occurs when the align of the percentage text is changed</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.DisplayFormatChanged">
+ <summary>Occurs when the display format is changed</summary>
+</member>
+<member name="E:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.PaddingChanged">
+ <summary>Occurs when the padding of the percentage text is changed</summary>
+</member>
+<member name="M:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.#ctor">
+ <summary>Create a new instance of a ProgressbarWithPercentage</summary>
+</member>
+<member name="M:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.PerformStep">
+ <summary>Advances the current possition of the progressbar by the amount of the Step property</summary>
+</member>
+<member name="M:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.ShowPercentage">
+ <summary>Show the current percentage as text</summary>
+</member>
+<member name="M:LBRY_Youtube_copy_tool.ProgressbarWithPercentage.ShowText(System.String)">
+ <summary>Display a string on the progressbar</summary>
+ <param name="text">Required. String. The string to display</param>
+</member>
+</members>
+</doc>

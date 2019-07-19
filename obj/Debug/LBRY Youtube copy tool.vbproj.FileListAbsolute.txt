@@ -1,0 +1,15 @@
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.vbprojAssemblyReference.cache
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY_Youtube_copy_tool.Form1.resources
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY_Youtube_copy_tool.Resources.resources
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.vbproj.GenerateResource.cache
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.vbproj.CoreCompileInputs.cache
+I:\TYchannel\application\LBRY Youtube copy tool\bin\Debug\LBRY Youtube copy tool.exe.config
+I:\TYchannel\application\LBRY Youtube copy tool\bin\Debug\LBRY Youtube copy tool.exe
+I:\TYchannel\application\LBRY Youtube copy tool\bin\Debug\LBRY Youtube copy tool.pdb
+I:\TYchannel\application\LBRY Youtube copy tool\bin\Debug\LBRY Youtube copy tool.xml
+I:\TYchannel\application\LBRY Youtube copy tool\bin\Debug\Newtonsoft.Json.dll
+I:\TYchannel\application\LBRY Youtube copy tool\bin\Debug\Newtonsoft.Json.xml
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.vbproj.CopyComplete
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.exe
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.xml
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.pdb

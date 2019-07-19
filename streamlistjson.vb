@@ -87,7 +87,7 @@ Public Class Streamlistjson
         If IsNothing(dataoSource) Then
             Dim pLbrynetlist As New ProcessStartInfo With
                 {
-                .FileName = Form1.TxtFileName.Text,
+                .FileName = Form1.lbrynetpath.Text,
                 .Arguments = "stream list",
                 .UseShellExecute = False,
                 .RedirectStandardOutput = True,

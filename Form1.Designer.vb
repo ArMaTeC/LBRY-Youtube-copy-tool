@@ -26,7 +26,7 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.upload_button = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.TxtFileName = New System.Windows.Forms.TextBox()
+        Me.lbrynetpath = New System.Windows.Forms.TextBox()
         Me.BID = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -49,8 +49,8 @@ Partial Class Form1
         Me.delcheckedtags = New System.Windows.Forms.Button()
         Me.Addtags = New System.Windows.Forms.Button()
         Me.addtagtextbox = New System.Windows.Forms.TextBox()
-        Me.ProgressBar1 = New LBRY_Youtube_copy_tool.ProgressbarWithPercentage()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ProgressBar1 = New LBRY_Youtube_copy_tool.ProgressbarWithPercentage()
         Me.SuspendLayout()
         '
         'upload_button
@@ -71,13 +71,15 @@ Partial Class Form1
         Me.Button3.Text = "Select lbrynet.exe"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'TxtFileName
+        'lbrynetpath
         '
-        Me.TxtFileName.Location = New System.Drawing.Point(12, 7)
-        Me.TxtFileName.Name = "TxtFileName"
-        Me.TxtFileName.Size = New System.Drawing.Size(495, 20)
-        Me.TxtFileName.TabIndex = 4
-        Me.TxtFileName.Text = "C:\Program Files\LBRY\resources\static\daemon\lbrynet.exe"
+        Me.lbrynetpath.Location = New System.Drawing.Point(12, 7)
+        Me.lbrynetpath.Name = "lbrynetpath"
+        Me.lbrynetpath.Size = New System.Drawing.Size(495, 20)
+        Me.lbrynetpath.TabIndex = 4
+        Me.lbrynetpath.Text = "C:\Program Files\LBRY\resources\static\daemon\lbrynet.exe"
+        Me.ToolTip1.SetToolTip(Me.lbrynetpath, "Location of the lbrynet.exe normally C:\Program Files\LBRY\resources\static\daemo" &
+        "n\lbrynet.exe")
         '
         'BID
         '
@@ -86,6 +88,7 @@ Partial Class Form1
         Me.BID.Size = New System.Drawing.Size(366, 20)
         Me.BID.TabIndex = 5
         Me.BID.Text = "0.5"
+        Me.ToolTip1.SetToolTip(Me.BID, "Amount of LBC to back your upload")
         '
         'Label1
         '
@@ -112,6 +115,7 @@ Partial Class Form1
         Me.downloadfee.Size = New System.Drawing.Size(366, 20)
         Me.downloadfee.TabIndex = 7
         Me.downloadfee.Text = "0.0"
+        Me.ToolTip1.SetToolTip(Me.downloadfee, "Cost in LBC to download the content")
         '
         'Label3
         '
@@ -129,6 +133,7 @@ Partial Class Form1
         Me.ChannelID.Size = New System.Drawing.Size(366, 20)
         Me.ChannelID.TabIndex = 9
         Me.ChannelID.Text = "@CLRPG"
+        Me.ToolTip1.SetToolTip(Me.ChannelID, "Your target chnnel")
         '
         'Label4
         '
@@ -307,7 +312,7 @@ Partial Class Form1
         Me.Controls.Add(Me.downloadfee)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BID)
-        Me.Controls.Add(Me.TxtFileName)
+        Me.Controls.Add(Me.lbrynetpath)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.upload_button)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -320,7 +325,7 @@ Partial Class Form1
 
     Friend WithEvents upload_button As Button
     Friend WithEvents Button3 As Button
-    Friend WithEvents TxtFileName As TextBox
+    Friend WithEvents lbrynetpath As TextBox
     Friend WithEvents BID As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label

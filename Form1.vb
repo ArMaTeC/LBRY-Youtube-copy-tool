@@ -103,7 +103,7 @@ Public Class Form1
     Dim proxycurrent As Integer = 0
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles upload_button.Click
-        If Not TxtFileName.Text.Contains("daemon\lbrynet.exe") Then
+        If Not lbrynetpath.Text.Contains("daemon\lbrynet.exe") Then
             MsgBox("Please set the daemon\lbrynet.exe" + vbNewLine + "Typically its located C:\Program Files\LBRY\resources\static\daemon\lbrynet.exe")
             Exit Sub
         End If
@@ -306,19 +306,15 @@ Public Class Form1
 
                     End If
                 Next
-                MsgBox(tagliststring)
 
                 If downloadfee.Text = "0" Or downloadfee.Text = "0.0" Or downloadfee.Text = "" Then
                     Dim pLbrynet As New ProcessStartInfo With
                     {
-                        .FileName = TxtFileName.Text,
+                        .FileName = lbrynetpath.Text,
                         .Arguments = "publish " + Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + " " +
                                      " --bid=" + BID.Text +
                                      " --file_path=""" + Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + "." + youtubeext).Replace("\", "\\") + """" +
-                                     " --tags=""armatec""" +
-                                     " --tags=""city life rpg""" +
-                                     " --tags=""arma3""" +
-                                     " --tags=""ROLEPLAY""" +
+                                     tagliststring +
                                      " --title=""" + youtubetitle + """" +
                                      " --languages=en" +
                                      " --description=""" + youtubedescription + """" +
@@ -346,14 +342,11 @@ Public Class Form1
                 Else
                     Dim pLbrynet As New ProcessStartInfo With
                     {
-                        .FileName = TxtFileName.Text,
+                        .FileName = lbrynetpath.Text,
                         .Arguments = "publish " + Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + DateTime.Now.ToString("yyyyMMddHHmmss") + " " +
                                      " --bid=" + BID.Text +
                                      " --file_path=""" + Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + "." + youtubeext).Replace("\", "\\") + """" +
-                                     " --tags=""armatec""" +
-                                     " --tags=""city life rpg""" +
-                                     " --tags=""arma3""" +
-                                     " --tags=""ROLEPLAY""" +
+                                     tagliststring +
                                      " --fee_amount=" + downloadfee.Text +
                                      " --title=""" + youtubetitle + """" +
                                      " --languages=en" +
@@ -392,17 +385,17 @@ Public Class Form1
         Dim fileDialog As New OpenFileDialog
         With fileDialog
             .Title = "Select The lbrynet.exe To Run"
-            If Trim(TxtFileName.Text) <> "" Then _
-            .InitialDirectory = Path.GetDirectoryName(TxtFileName.Text)
+            If Trim(lbrynetpath.Text) <> "" Then _
+            .InitialDirectory = Path.GetDirectoryName(lbrynetpath.Text)
             .Filter = "Program Files (lbrynet.exe)|lbrynet.exe"
-            .FileName = Path.GetFileName(TxtFileName.Text)
+            .FileName = Path.GetFileName(lbrynetpath.Text)
             .ValidateNames = False
             If .ShowDialog() <> DialogResult.OK Then _
                 Exit Sub
             If .FileName = "" Then _
                 Exit Sub
-            TxtFileName.Text = .FileName
-            debugout.AppendText("lbrynet.exe set to " + TxtFileName.Text + vbNewLine)
+            lbrynetpath.Text = .FileName
+            debugout.AppendText("lbrynet.exe set to " + lbrynetpath.Text + vbNewLine)
         End With
     End Sub
     Friend Shared Form1Instance As Form1
@@ -422,6 +415,13 @@ Public Class Form1
                                                               End Function)
         End If
         youtubeplaylist.Text = My.Settings.playlist
+
+        lbrynetpath.Text = My.Settings.lbrynetpath
+        BID.Text = My.Settings.BID
+        downloadfee.Text = My.Settings.downloadfee
+        ChannelID.Text = My.Settings.ChannelID
+        licenseurl.Text = My.Settings.licenseurl
+        license.Text = My.Settings.license
     End Sub
 
     Private Sub Form1_FormClosing(ByVal sender As Object, ByVal e As FormClosingEventArgs) Handles Me.FormClosing
@@ -436,6 +436,13 @@ Public Class Form1
         My.Settings.TagsList = String.Join(",", notcheckeditems)
         My.Settings.TagsListChecked = String.Join(",", indicesChecked)
         My.Settings.playlist = youtubeplaylist.Text
+
+        My.Settings.lbrynetpath = lbrynetpath.Text
+        My.Settings.BID = BID.Text
+        My.Settings.downloadfee = downloadfee.Text
+        My.Settings.ChannelID = ChannelID.Text
+        My.Settings.licenseurl = licenseurl.Text
+        My.Settings.license = license.Text
         My.Settings.Save()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

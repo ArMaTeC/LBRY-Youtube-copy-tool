@@ -1,4 +1,3 @@
-I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.vbprojAssemblyReference.cache
 I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY_Youtube_copy_tool.Form1.resources
 I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY_Youtube_copy_tool.Resources.resources
 I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.vbproj.GenerateResource.cache

@@ -89,6 +89,78 @@ Namespace My
                 Me("playlist") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property licenseurl() As String
+            Get
+                Return CType(Me("licenseurl"),String)
+            End Get
+            Set
+                Me("licenseurl") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property license() As String
+            Get
+                Return CType(Me("license"),String)
+            End Get
+            Set
+                Me("license") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ChannelID() As String
+            Get
+                Return CType(Me("ChannelID"),String)
+            End Get
+            Set
+                Me("ChannelID") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property downloadfee() As String
+            Get
+                Return CType(Me("downloadfee"),String)
+            End Get
+            Set
+                Me("downloadfee") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property BID() As String
+            Get
+                Return CType(Me("BID"),String)
+            End Get
+            Set
+                Me("BID") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property lbrynetpath() As String
+            Get
+                Return CType(Me("lbrynetpath"),String)
+            End Get
+            Set
+                Me("lbrynetpath") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

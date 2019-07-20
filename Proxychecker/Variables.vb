@@ -1,6 +1,4 @@
-﻿Imports System.Collections.Generic
-
-Namespace ProxyChecker
+﻿Namespace ProxyChecker
     Public Class Variables
         Public Shared Type As String = "1"
         Public Shared Threads As Integer = 250

@@ -51,6 +51,7 @@ Partial Class Form1
         Me.addtagtextbox = New System.Windows.Forms.TextBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ProgressBar1 = New LBRY_Youtube_copy_tool.ProgressbarWithPercentage()
+        Me.consoleoutput = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'upload_button
@@ -285,11 +286,21 @@ Partial Class Form1
         Me.ProgressBar1.TabIndex = 21
         Me.ProgressBar1.TextColor = System.Drawing.Color.DarkRed
         '
+        'consoleoutput
+        '
+        Me.consoleoutput.Location = New System.Drawing.Point(797, 7)
+        Me.consoleoutput.Multiline = True
+        Me.consoleoutput.Name = "consoleoutput"
+        Me.consoleoutput.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.consoleoutput.Size = New System.Drawing.Size(543, 431)
+        Me.consoleoutput.TabIndex = 31
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(795, 445)
+        Me.ClientSize = New System.Drawing.Size(1349, 445)
+        Me.Controls.Add(Me.consoleoutput)
         Me.Controls.Add(Me.addtagtextbox)
         Me.Controls.Add(Me.Addtags)
         Me.Controls.Add(Me.delcheckedtags)
@@ -350,4 +361,5 @@ Partial Class Form1
     Friend WithEvents Addtags As Button
     Friend WithEvents addtagtextbox As TextBox
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents consoleoutput As TextBox
 End Class

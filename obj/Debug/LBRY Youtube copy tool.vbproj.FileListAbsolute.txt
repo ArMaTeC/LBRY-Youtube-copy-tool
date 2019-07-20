@@ -12,3 +12,4 @@ I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool
 I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.exe
 I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.xml
 I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.pdb
+I:\TYchannel\application\LBRY Youtube copy tool\obj\Debug\LBRY Youtube copy tool.vbprojAssemblyReference.cache

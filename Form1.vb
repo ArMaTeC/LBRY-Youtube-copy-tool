@@ -4,17 +4,13 @@ Imports Newtonsoft.Json.Linq
 Imports System.Net
 Imports System.ComponentModel
 Imports System.Threading
-Imports Newtonsoft.Json
-
 Public Class Form1
     Dim WithEvents Wc2 As New WebClient
     Dim P As Integer = 0
     Dim sw As New Stopwatch
     Dim currentfiledownloading As String
     Dim speed As Double
-    Dim length As Long
     Public Delegate Sub DeleteFileThreadDelegate(ByVal path As String)
-
     Private Sub DeleteFileThread(ByVal path As String)
         Do
             Try
@@ -36,14 +32,11 @@ Public Class Form1
             MsgBox("An error occured: " & e.Error.Message)
         End If
     End Sub
-
     Private Sub wc2_DownloadProgressChanged(ByVal sender As Object, ByVal e As DownloadProgressChangedEventArgs) Handles Wc2.DownloadProgressChanged
         ProgressBar1.Maximum = 100
         ProgressBar1.Value = e.ProgressPercentage
         speed = (e.BytesReceived / 1024D / sw.Elapsed.TotalSeconds).ToString("0.00")
-
     End Sub
-
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         Dim progstring As String = ""
         Dim progstring1 As String = ""
@@ -52,7 +45,6 @@ Public Class Form1
         Else
             progstring += "{0}% " + String.Format("Speed: {0:0.00} MB/s", speed / 1024)
         End If
-
         If ProgressBar1.Value = 0 Then
             progstring1 = "Time Left: Estimating..."
         Else
@@ -75,9 +67,7 @@ Public Class Form1
     Function RemoveWhitespace(fullString As String) As String
         Return New String(fullString.Where(Function(x) Not Char.IsWhiteSpace(x)).ToArray())
     End Function
-
     Private Delegate Sub NameCallBack(ByVal varText As String)
-
     Public Sub UpdateTextBox(ByVal input As String)
         If InvokeRequired Then
             debugout.BeginInvoke(New NameCallBack(AddressOf UpdateTextBox), New Object() {input})
@@ -99,15 +89,39 @@ Public Class Form1
             proxystringinfo.Text = input
         End If
     End Sub
+    Public Sub Updateconsoleoutput(ByVal input As String)
+        If InvokeRequired Then
+            consoleoutput.BeginInvoke(New NameCallBack(AddressOf Updateconsoleoutput), New Object() {input})
+        Else
+            Console.WriteLine(input)
+            consoleoutput.Text = input
+        End If
+    End Sub
+
+
+
+
+    Private Function CheckIfLBRYRunning()
+        Dim p() As Process
+        p = Process.GetProcessesByName("LBRY")
+        If p.Count > 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
     Dim proxylistselector() As String
     Dim proxycurrent As Integer = 0
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles upload_button.Click
         If Not lbrynetpath.Text.Contains("daemon\lbrynet.exe") Then
             MsgBox("Please set the daemon\lbrynet.exe" + vbNewLine + "Typically its located C:\Program Files\LBRY\resources\static\daemon\lbrynet.exe")
             Exit Sub
         End If
-
+        If Not CheckIfLBRYRunning() Then
+            MsgBox("Please run LBRY and login")
+            Exit Sub
+        End If
         upload_button.Enabled = False
         Button3.Enabled = False
         If userproxycheck.CheckState = CheckState.Checked Then
@@ -132,12 +146,13 @@ Public Class Form1
                     .WindowStyle = ProcessWindowStyle.Hidden,
                     .CreateNoWindow = True
                     }
-        Console.WriteLine(pYoutube.Arguments)
+        Updateconsoleoutput(pYoutube.Arguments)
+        Updateconsoleoutput(pYoutube.Arguments)
         Dim proc0 As Process = Process.Start(pYoutube)
         While Not proc0.StandardOutput.EndOfStream
             Application.DoEvents()
             Dim YoutubeJsonLine As String = proc0.StandardOutput.ReadLine()
-            Console.WriteLine(YoutubeJsonLine)
+            Updateconsoleoutput(YoutubeJsonLine)
             Dim json As String = YoutubeJsonLine
             Dim ser As JObject = JObject.Parse(json)
             Dim data As List(Of JToken) = ser.Children().ToList
@@ -145,7 +160,7 @@ Public Class Form1
             Dim youtubedescription As String = ""
             Dim youtubedisplay_id As String = ""
             Dim youtubethumbnail As String = ""
-            Dim youtubeurl As New Uri("http://cityliferpg.com/")
+            Dim youtubeurl As New Uri("https://github.com/ArMaTeC/LBRY-Youtube-copy-tool")
             Dim youtubeext As String = ""
             For Each item As JProperty In data
                 item.CreateReader()
@@ -162,7 +177,7 @@ Public Class Form1
                         youtubeext = item.Value
                     Case "requested_formats"
                         For Each msg As JObject In item.Values
-                            Console.WriteLine(item.Name + ":" + msg.ToString())
+                            Updateconsoleoutput(item.Name + ":" + msg.ToString())
                             Dim ser1 As JObject = JObject.Parse(msg.ToString())
                             Dim data1 As List(Of JToken) = ser1.Children().ToList
                             For Each item1 As JProperty In data1
@@ -211,14 +226,13 @@ Public Class Form1
                         If proxycurrent > (proxylistselector.Count - 1) Then
                             proxycurrent = 0
                         End If
-                        Console.WriteLine(pthumbupload.Arguments)
+                        Updateconsoleoutput(pthumbupload.Arguments)
                         Dim proc1 As Process = Process.Start(pthumbupload)
                         While Not proc1.StandardOutput.EndOfStream
                             line1 = proc1.StandardOutput.ReadLine()
-                            Console.WriteLine(line1)
+                            Updateconsoleoutput(line1)
                             If line1.Contains("{""success""") Then
                                 jsonline1 = line1
-
                                 If File.Exists(Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + ".jpg")) = True Then
                                     Dim delInstance As DeleteFileThreadDelegate = New DeleteFileThreadDelegate(AddressOf DeleteFileThread)
                                     delInstance.BeginInvoke(Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + ".jpg"), Nothing, Nothing)
@@ -226,7 +240,6 @@ Public Class Form1
                                 Exit While
                             End If
                         End While
-
                     End While
                 Else
                     Dim pthumbupload As New ProcessStartInfo With {
@@ -239,14 +252,13 @@ Public Class Form1
                             .WindowStyle = ProcessWindowStyle.Hidden,
                             .CreateNoWindow = True
                             }
-                    Console.WriteLine(pthumbupload.Arguments)
+                    Updateconsoleoutput(pthumbupload.Arguments)
                     Dim proc1 As Process = Process.Start(pthumbupload)
                     While Not proc1.StandardOutput.EndOfStream
                         line1 = proc1.StandardOutput.ReadLine()
-                        Console.WriteLine(line1)
+                        Updateconsoleoutput(line1)
                         If line1.Contains("{""success""") Then
                             jsonline1 = line1
-
                             If File.Exists(Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + ".jpg")) = True Then
                                 Dim delInstance As DeleteFileThreadDelegate = New DeleteFileThreadDelegate(AddressOf DeleteFileThread)
                                 delInstance.BeginInvoke(Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + ".jpg"), Nothing, Nothing)
@@ -258,7 +270,7 @@ Public Class Form1
                 '{"success":false,"message":"No matching claim id could be found for that url"}
                 Try
                     If jsonline1 <> "" Then
-                        Console.WriteLine("jsonline " + jsonline1)
+                        Updateconsoleoutput("jsonline " + jsonline1)
                         Dim json1 As String = jsonline1
                         Dim ser1 As JObject = JObject.Parse(json1)
                         Dim data1 As List(Of JToken) = ser1.Children().ToList
@@ -273,7 +285,7 @@ Public Class Form1
                                     For Each msg As String In item.Values
                                         'imageserveUrl = msg("serveUrl")
                                         If msg.Contains(".jpg") Then
-                                            Console.WriteLine(msg)
+                                            Updateconsoleoutput(msg)
                                             imageserveUrl = msg
                                             Exit For
                                         End If
@@ -287,7 +299,7 @@ Public Class Form1
                         End If
                     End If
                 Catch ex As Exception
-                    Console.WriteLine(ex.Message + " " + ex.Source)
+                    Updateconsoleoutput(ex.Message + " " + ex.Source)
                 End Try
                 P = 1
                 debugout.AppendText("Current spee.ch thumb " + thumbnailPath + vbNewLine)
@@ -306,7 +318,6 @@ Public Class Form1
 
                     End If
                 Next
-
                 If downloadfee.Text = "0" Or downloadfee.Text = "0.0" Or downloadfee.Text = "" Then
                     Dim pLbrynet As New ProcessStartInfo With
                     {
@@ -327,13 +338,13 @@ Public Class Form1
                         .WindowStyle = ProcessWindowStyle.Hidden,
                         .CreateNoWindow = True
                     }
-                    Console.WriteLine(pLbrynet.Arguments)
+                    Updateconsoleoutput(pLbrynet.Arguments)
                     Dim proc2 As Process = Process.Start(pLbrynet)
                     debugout.AppendText("Current LBRY return " + vbNewLine)
                     While Not proc2.StandardOutput.EndOfStream
                         Dim line2 As String = proc2.StandardOutput.ReadLine()
                         debugout.AppendText(line2 + vbNewLine)
-                        Console.WriteLine(line2)
+                        Updateconsoleoutput(line2)
                     End While
                     If File.Exists(Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + "." + youtubeext)) = True Then
                         Dim delInstance As DeleteFileThreadDelegate = New DeleteFileThreadDelegate(AddressOf DeleteFileThread)
@@ -360,14 +371,14 @@ Public Class Form1
                         .WindowStyle = ProcessWindowStyle.Hidden,
                         .CreateNoWindow = True
                     }
-                    Console.WriteLine(pLbrynet.Arguments)
+                    Updateconsoleoutput(pLbrynet.Arguments)
                     debugout.AppendText("Current LBRY args " + pLbrynet.Arguments + vbNewLine)
                     Dim proc2 As Process = Process.Start(pLbrynet)
                     debugout.AppendText("Current LBRY return " + vbNewLine)
                     While Not proc2.StandardOutput.EndOfStream
                         Dim line2 As String = proc2.StandardOutput.ReadLine()
                         debugout.AppendText(line2 + vbNewLine)
-                        Console.WriteLine(line2)
+                        Updateconsoleoutput(line2)
                     End While
                     If File.Exists(Path.Combine(Application.StartupPath + "\temp\", Regex.Replace(youtubetitle, "[^a-zA-Z0-9]", "") + "." + youtubeext)) = True Then
                         Dim delInstance As DeleteFileThreadDelegate = New DeleteFileThreadDelegate(AddressOf DeleteFileThread)
@@ -407,7 +418,6 @@ Public Class Form1
                                                                          Return True
                                                                      End Function)
         End If
-
         If Not String.IsNullOrEmpty(My.Settings.TagsList) Then
             My.Settings.TagsList.Split(","c).ToList().ForEach(Function(item)
                                                                   CheckedListBoxTags.Items.Add(item, False)
@@ -415,7 +425,6 @@ Public Class Form1
                                                               End Function)
         End If
         youtubeplaylist.Text = My.Settings.playlist
-
         lbrynetpath.Text = My.Settings.lbrynetpath
         BID.Text = My.Settings.BID
         downloadfee.Text = My.Settings.downloadfee
@@ -436,7 +445,6 @@ Public Class Form1
         My.Settings.TagsList = String.Join(",", notcheckeditems)
         My.Settings.TagsListChecked = String.Join(",", indicesChecked)
         My.Settings.playlist = youtubeplaylist.Text
-
         My.Settings.lbrynetpath = lbrynetpath.Text
         My.Settings.BID = BID.Text
         My.Settings.downloadfee = downloadfee.Text

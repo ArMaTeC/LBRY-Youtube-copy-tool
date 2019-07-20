@@ -1,4 +1,7 @@
 # LBRY-Youtube-copy-tool
+
+![Logo](https://i.imgur.com/12NwMye.png)
+
 Tool to transfer your youtube channel to LBRY
 
 This tool is sent as is if you wish to contribute as im not the best coder in the world please do via pull requests

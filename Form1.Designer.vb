@@ -288,7 +288,7 @@ Partial Class Form1
         '
         'consoleoutput
         '
-        Me.consoleoutput.Location = New System.Drawing.Point(797, 7)
+        Me.consoleoutput.Location = New System.Drawing.Point(807, 5)
         Me.consoleoutput.Multiline = True
         Me.consoleoutput.Name = "consoleoutput"
         Me.consoleoutput.ScrollBars = System.Windows.Forms.ScrollBars.Both

@@ -130,7 +130,7 @@ Namespace ProxyChecker
             Dim myProxy As New WebProxy(line)
             Try
                 Dim str As String = "proxy.txt"
-                Dim request As HttpWebRequest = WebRequest.Create("http://lbrypingtest.000webhostapp.com/ping.php")
+                Dim request As HttpWebRequest = WebRequest.Create("http://witch.valdikss.org.ru/")
                 request.Proxy = myProxy
                 request.ContentType = "application/x-www-form-urlencoded"
                 request.Timeout = Variables.TimeOut
@@ -140,13 +140,17 @@ Namespace ProxyChecker
                     Dim sr As StreamReader = New StreamReader(webresponse.GetResponseStream())
                     Dim body As String = sr.ReadToEnd
                     Form1.Updateconsoleoutput(String.Format("{0} | Working proxy HTTP/s", body))
-                    If body.Contains("Proxy detected") Then
+                    If Not body.Contains("No proxy detected") Then
                         writer.FilePath = str
                         writer.AppendToFile(String.Format("{0}", line))
                         Variables.Alive += 1
                         Form1.Updateconsoleoutput(String.Format("{0} | Working proxy HTTP/s", line))
                         Form1proxystringinfo(String.Format("Checker Alive: {0} Dead: {1}", Variables.Alive, Variables.Dead))
                         Application.DoEvents()
+                        Form1.Updateconsoleoutput("(" & myProxy.ToString & ")Proxy detected and working " & TimeOfDay.ToString("h:mm:ss tt"))
+                    Else
+
+                        Form1.Updateconsoleoutput("(" & myProxy.ToString & ")Proxy error " & TimeOfDay.ToString("h:mm:ss tt"))
                     End If
                     webresponse.Close()
                 End If

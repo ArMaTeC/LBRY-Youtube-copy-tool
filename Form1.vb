@@ -93,8 +93,8 @@ Public Class Form1
         If InvokeRequired Then
             consoleoutput.BeginInvoke(New NameCallBack(AddressOf Updateconsoleoutput), New Object() {input})
         Else
-            Console.WriteLine(input)
-            consoleoutput.Text = input
+            Console.WriteLine(input & vbNewLine)
+            consoleoutput.AppendText(input & vbNewLine)
         End If
     End Sub
 
@@ -146,7 +146,6 @@ Public Class Form1
                     .WindowStyle = ProcessWindowStyle.Hidden,
                     .CreateNoWindow = True
                     }
-        Updateconsoleoutput(pYoutube.Arguments)
         Updateconsoleoutput(pYoutube.Arguments)
         Dim proc0 As Process = Process.Start(pYoutube)
         While Not proc0.StandardOutput.EndOfStream
